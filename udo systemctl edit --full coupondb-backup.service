@@ -1,0 +1,27 @@
+[0;1;34m# /etc/systemd/system/coupondb-backup.service[0m
+[Unit]
+Description=CouponDB encrypted offsite backup (pg_dump + zstd + age + rclone)
+After=network-online.target postgresql@16-main.service
+Wants=network-online.target postgresql@16-main.service
+
+[Service]
+Type=oneshot
+# Recommended: run as a non-root user that owns rclone config + has access to AGE key
+User=botuser
+Group=botuser
+
+WorkingDirectory=/opt/couponbot
+
+Environment=ENV_FILE=/opt/couponbot/requirement.env
+Environment=AGE_KEY_FILE=/etc/couponbot-backup/age.key
+# Optional overrides if you want them fixed here (otherwise keep inside requirement.env)
+# Environment=REMOTE=b2:coupondb/postgres/prod
+# Environment=RETENTION_DAYS=30
+# Environment=DB_URL=postgresql://appuser:apppass@127.0.0.1:5432/coupond
+
+ExecStart=/bin/bash /usr/local/bin/coupondb-backup.sh
+
+
+
+StandardOutput=journal
+StandardError=journal

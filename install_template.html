@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+  <title>Install {{TITLE}}</title>
+  <meta name="theme-color" content="#0b0b0f"/>
+  <style>
+    :root {
+      --bg1:#0b0b0f; --bg2:#11131a;
+      --card:#12141c; --card2:#0f1118;
+      --text:#f4f6ff; --muted:#a7adc7;
+      --line:rgba(255,255,255,.10);
+      --btn:#ffffff; --btnText:#0b0b0f;
+      --warn:#ffcc00; --good:#34d399;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --r:18px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg1:#f6f7fb; --bg2:#eef1f8;
+        --card:#ffffff; --card2:#f7f8fc;
+        --text:#0b0b0f; --muted:#5a617a;
+        --line:rgba(10,10,15,.10);
+        --btn:#0b0b0f; --btnText:#ffffff;
+        --shadow: 0 10px 25px rgba(10,10,15,.12);
+      }
+    }
+
+    *{box-sizing:border-box}
+    body {
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 50% -10%, rgba(120,80,255,.35), transparent 55%),
+                  radial-gradient(900px 500px at 10% 0%, rgba(0,200,255,.20), transparent 55%),
+                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      padding: 26px 16px 34px;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    .top {
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; margin-bottom:14px;
+    }
+    .brand {
+      display:flex; align-items:center; gap:10px;
+      padding:10px 12px; border:1px solid var(--line); border-radius:999px;
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+    }
+    .dot {
+      width:10px; height:10px; border-radius:99px;
+      background: var(--good);
+      box-shadow: 0 0 0 6px rgba(52,211,153,.12);
+    }
+    .brand b { font-size:14px; letter-spacing:.2px; }
+    .pill {
+      padding:10px 12px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-size:13px; color:var(--muted);
+    }
+
+    .card {
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero {
+      padding: 18px 18px 10px;
+      border-bottom:1px solid var(--line);
+    }
+    .title {
+      font-size: 26px; line-height:1.15; margin: 0 0 6px 0;
+      letter-spacing: .2px;
+    }
+    .sub {
+      margin:0; color:var(--muted); font-size:14px; line-height:1.5;
+    }
+    .grid {
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 14px 18px 0;
+    }
+    @media (max-width:560px) {
+      .grid { grid-template-columns:1fr; }
+    }
+    .kv {
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 12px;
+      background: rgba(255,255,255,.03);
+    }
+    .k { color: var(--muted); font-size:12px; margin-bottom:6px; }
+    .v {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      overflow-wrap:anywhere;
+    }
+
+    .steps {
+      padding: 14px 18px 0;
+    }
+    .warn {
+      display:flex; gap:10px; align-items:flex-start;
+      border:1px solid rgba(255,204,0,.35);
+      background: rgba(255,204,0,.10);
+      border-radius: 14px;
+      padding: 12px 12px;
+      margin-top: 10px;
+    }
+    .warn .icon {
+      width: 22px; height: 22px; border-radius: 8px;
+      background: rgba(255,204,0,.18);
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900; color: var(--warn);
+    }
+    ol {
+      margin: 10px 0 0 18px;
+      padding:0;
+      color: var(--text);
+      line-height:1.6;
+      font-size: 14px;
+    }
+    .actions {
+      padding: 16px 18px 18px;
+      display:flex; gap:10px; flex-wrap:wrap;
+      border-top:1px solid var(--line);
+      margin-top: 16px;
+    }
+    a.btn {
+      appearance:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      text-decoration:none;
+      font-weight: 800;
+      background: var(--btn);
+      color: var(--btnText);
+      border: 0;
+      min-width: 210px;
+      flex: 1;
+    }
+    button.ghost, a.ghost {
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight: 700;
+      text-decoration:none;
+      min-width: 210px;
+      flex: 1;
+      cursor:pointer;
+    }
+    .tiny {
+      margin: 14px 18px 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height:1.55;
+    }
+    details {
+      margin-top: 10px;
+      border: 1px dashed var(--line);
+      border-radius: 14px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.02);
+    }
+    summary {
+      cursor:pointer;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .monoLink {
+      margin-top: 10px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+      overflow-wrap:anywhere;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <span class="dot"></span>
+        <b>OTA Installer</b>
+      </div>
+      <div class="pill">Safari required • HTTPS</div>
+    </div>
+
+    <div class="card">
+      <div class="hero">
+        <h1 class="title">Install {{TITLE}}</h1>
+        <p class="sub">Tap install below. If you opened from Telegram, use “Open in Safari”.</p>
+      </div>
+
+      <div class="grid">
+        <div class="kv">
+          <div class="k">Bundle ID</div>
+          <div class="v">{{BUNDLE_ID}}</div>
+        </div>
+        <div class="kv">
+          <div class="k">Version</div>
+          <div class="v">{{BUNDLE_VERSION}}</div>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="warn">
+          <div class="icon">!</div>
+          <div>
+            <div style="font-weight:800; margin-bottom:2px;">Important</div>
+            <div style="color:var(--muted); font-size:13px; line-height:1.45;">
+              Telegram in-app browser may show a blank page or block install.
+              Open this page in <b>Safari</b>.
+            </div>
+          </div>
+        </div>
+
+        <ol>
+          <li>Open this page in <b>Safari</b>.</li>
+          <li>Tap <b>Install</b>.</li>
+          <li>If it fails: delete old app with same Bundle ID, then try again.</li>
+        </ol>
+
+        <details>
+          <summary>Advanced (manifest link)</summary>
+          <div class="monoLink" id="manifestLink">{{MANIFEST_URL}}</div>
+        </details>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="{{ITMS_LINK}}">📲 Install</a>
+        <button class="ghost" type="button" id="copyBtn">🔗 Copy Install Page</button>
+        <a class="ghost" href="{{RELOAD_URL}}">🔄 Reload</a>
+      </div>
+
+      <div class="tiny">
+        If nothing happens after tapping Install, you’re likely not in Safari or the device can’t reach the manifest.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const copyBtn = document.getElementById('copyBtn');
+      const url = window.location.href;
+
+      copyBtn.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(url);
+          copyBtn.textContent = '✅ Copied';
+          setTimeout(() => copyBtn.textContent = '🔗 Copy Install Page', 1400);
+        } catch (e) {
+          const ta = document.createElement('textarea');
+          ta.value = url;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          copyBtn.textContent = '✅ Copied';
+          setTimeout(() => copyBtn.textContent = '🔗 Copy Install Page', 1400);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
